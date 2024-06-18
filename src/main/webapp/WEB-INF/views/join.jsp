@@ -14,9 +14,9 @@
 		비밀번호 : <input type="password" name="mpw"><br><br>
 		이름 : <input type="text" name="mname"><br><br>
 		이메일 : <input type="text" name="memail"><br><br>
-		<input type="submit" value="회원등록">
-	
-	
+		<input type="submit" value="회원등록">	
 	</form>
+	<br>
+	<h3>${error}</h3>
 </body>
 </html>

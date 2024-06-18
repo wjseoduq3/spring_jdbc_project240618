@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jdy.jdbcdao.MemberDao;
@@ -48,17 +49,27 @@ public class JdbcController {
 	}
  	
 	@RequestMapping(value = "/joinOk")
-	public String joinOk(HttpServletRequest request) {
+	public String joinOk(HttpServletRequest request, Model model) {
 		
 		String mid = request.getParameter("mid");
 		String mpw = request.getParameter("mpw");
-		String mnname = request.getParameter("mname");
+		String mname = request.getParameter("mname");
 		String memail = request.getParameter("memail");
 		
 		MemberDao memberDao = new MemberDao();
-		memberDao.joinMember(mid, mpw, mnname, memail);
 		
-		return "joinOk";
+		int success = memberDao.joinMember(mid, mpw, mname, memail);
+		
+		if(success == 1 ) {
+			model.addAttribute("mid", mid);
+			model.addAttribute("mname", mname);
+			return "joinOk";
+			
+		} else {
+			model.addAttribute("error", "회원가입이 실패하였습니다. 다시 시도해주세요.");
+			return "redirect:join";
+		}
+		
 	}
 	
 	
