@@ -43,6 +43,7 @@ public class JdbcController {
 		}		
 	}
 	
+	// 회원 가입 part
 	@RequestMapping(value = "/join")
 	public String join() {
 		return "join";
@@ -79,6 +80,39 @@ public class JdbcController {
 		
 	}
 	
+	// 회원 탈퇴 part
+	@RequestMapping(value = "/withdraw")
+	public String withdraw() {
+		return "withdraw";
+	}
+	
+	@RequestMapping(value = "/drawCheck")
+	public String drawCheck(HttpServletRequest request, Model model) {
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		String mid = request.getParameter("mid");
+		
+		MemberDao memberDao = new MemberDao();
+		
+		int success = memberDao.drawMember(mid);
+		
+		if(success == 1) {
+			model.addAttribute("mid", mid);
+			return "drawCheck";
+			
+		} else {
+			model.addAttribute("error", "회원탈퇴에 실패하였습니다. 아이디를 다시 확인해주세요.");
+			// System.out.println("회원탈퇴실패");
+			return "withdraw";
+		}
+			
+	}
 	
 	
 }
