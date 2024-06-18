@@ -34,10 +34,6 @@ public class JdbcController {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
-		
+			
 	}
-
 }
