@@ -1,5 +1,6 @@
 package com.jdy.jdbctest;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -35,12 +36,11 @@ public class JdbcController {
 			try {
 				if(conn != null) {
 					conn.close();
-					}
-			} catch (Exception e) {
+				}
+			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
-			
+		}		
 	}
 	
 	@RequestMapping(value = "/join")
@@ -51,6 +51,13 @@ public class JdbcController {
 	@RequestMapping(value = "/joinOk")
 	public String joinOk(HttpServletRequest request, Model model) {
 		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 		String mid = request.getParameter("mid");
 		String mpw = request.getParameter("mpw");
 		String mname = request.getParameter("mname");
@@ -60,14 +67,14 @@ public class JdbcController {
 		
 		int success = memberDao.joinMember(mid, mpw, mname, memail);
 		
-		if(success == 1 ) {
+		if(success == 1) {
 			model.addAttribute("mid", mid);
 			model.addAttribute("mname", mname);
 			return "joinOk";
 			
 		} else {
 			model.addAttribute("error", "회원가입이 실패하였습니다. 다시 시도해주세요.");
-			return "redirect:join";
+			return "join";
 		}
 		
 	}

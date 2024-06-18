@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-import com.mysql.cj.xdevapi.PreparableStatement;
+import com.jdy.jdbcdto.MemberDto;
 
 public class MemberDao {
 
@@ -41,17 +41,16 @@ public class MemberDao {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(pstmt != null) {
-					conn.close();
-				}
+					if(pstmt != null) {
+						pstmt.close();
+					}
+					if(pstmt != null) {
+						conn.close();
+					}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}				
 		}		
 		return success;
-	}
-		
+	}	
 }
