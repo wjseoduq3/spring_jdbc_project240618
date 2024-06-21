@@ -142,7 +142,7 @@ public class JdbcController {
 		 return "list";
 	 }
 	 
-	 @RequestMapping(value = "modifyOk")
+	 @RequestMapping(value = "/modifyOk")
 	 public String modifyOk(HttpServletRequest request, Model model) {
 		 
 		 model.addAttribute("request", request);
