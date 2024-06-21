@@ -19,7 +19,7 @@
 			<th>가입일</th>		
 		</tr>
 		
-		<c:forEach items="${memberDTos}" var="memberDto">
+		<c:forEach items="${memberDtos}" var="memberDto">
 		<tr>
 			<td>${memberDTo.mid}</td>
 			<td>${memberDTo.mpw}</td>
