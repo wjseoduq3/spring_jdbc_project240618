@@ -148,7 +148,7 @@ public class MemberDao {
 			return memberDto;
 		}	
 		
-		// 3. 회원 검색 part
+		// 3. 회원 리스트 조회 part
 		public ArrayList<MemberDto> listMember() {
 					
 			String sql ="SELECT * FROM members";

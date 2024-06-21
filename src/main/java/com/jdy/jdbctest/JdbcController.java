@@ -160,4 +160,13 @@ public class JdbcController {
 			 return "search";
 		 }	 
 	 } 
+	 
+	 @RequestMapping(value = "/")
+	 public String index() {
+		 
+		 return "index";
+	 }
+	 
+	 
+	 
 }

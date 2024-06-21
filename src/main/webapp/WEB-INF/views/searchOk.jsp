@@ -20,6 +20,7 @@
 	<!-- 이메일 : ${memberDto.memail}<br><br> -->	
     가입일 : ${memberDto.mdate}<br><br>
     <input type="submit" value="회원정보 수정 완료">
+    <input type="button" value="회원탈퇴" onclick="javascript:window.location.href='drawCheck?mid=${memberDto.mid}'">
     </form>
     ${error}
 </body>
