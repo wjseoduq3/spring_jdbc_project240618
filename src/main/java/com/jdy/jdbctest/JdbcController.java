@@ -125,6 +125,7 @@ public class JdbcController {
 	 }
 	 @RequestMapping (value = "/searchOk")
 	 public String searchOk(HttpServletRequest request, Model model) {
+		 
 		 model.addAttribute("request", request);
 		 
 		 command = new MSearchCommand();

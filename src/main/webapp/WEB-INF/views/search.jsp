@@ -9,7 +9,7 @@
 <body>
 	<h3>회원 정보 조회</h3>
 	<hr>
-	<form action="searchOK">
+	<form action="searchOk">
 		회원아이디 : <input type="text" name="mid">
 		<input type="submit" value="회원조회">	
 	</form>
