@@ -199,7 +199,7 @@ public class MemberDao {
 		
 		public int modifyMember(String mname, String memail, String mid) {
 			
-			String sql ="UPDATE members SET mname=?, memail=? WHRE mid=?";
+			String sql ="UPDATE members SET mname=?, memail=? WHERE mid=?";
 			
 			Connection conn = null;
 			PreparedStatement pstmt= null;
