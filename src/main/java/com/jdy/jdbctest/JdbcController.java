@@ -6,17 +6,23 @@ import java.sql.DriverManager;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jdy.jdbccommand.MCommand;
 import com.jdy.jdbccommand.MDeleteCommand;
 import com.jdy.jdbccommand.MJoinCommand;
+import com.jdy.jdbccommand.MListCommand;
+import com.jdy.jdbccommand.MSearchCommand;
 import com.jdy.jdbcdao.MemberDao;
 import com.jdy.jdbcdto.MemberDto;
 
 @Controller
 public class JdbcController {
+	
+	MCommand command = null;
 	
 	@RequestMapping(value = "/test")
 	public void test() {
@@ -61,7 +67,7 @@ public class JdbcController {
 		
 		model.addAttribute("request", request);
 		
-		MJoinCommand command = new MJoinCommand();
+		command = new MJoinCommand();
 		int success = command.execute(model);
 		
 //		String mid = request.getParameter("mid");
@@ -81,8 +87,7 @@ public class JdbcController {
 		} else {
 			model.addAttribute("error", "회원가입이 실패하였습니다. 다시 시도해주세요.");
 			return "join";
-		}
-		
+		}	
 	}
 	
 	// 회원 탈퇴 part
@@ -96,22 +101,44 @@ public class JdbcController {
 		
 		model.addAttribute("request", request);
 				
-		MDeleteCommand command = new MDeleteCommand();
+		command = new MDeleteCommand();
 		int success = command.execute(model);
 					
 		if(success == 1) {
 			// model.addAttribute("mid", request.getParameter("mid"));
 			model.addAttribute("message", "회원 탈퇴 성공");
-			return "drawCheck";
+			// return "drawCheck";
 			
 		} else {
-			model.addAttribute("message", "회원 탈퇴 실패");
-			// model.addAttribute("error", "회원탈퇴에 실패하였습니다. 아이디를 다시 확인해주세요.");
+			model.addAttribute("message", "회원탈퇴에 실패하였습니다. 아이디를 다시 확인해주세요."); 
 			// System.out.println("회원탈퇴실패");
-			return "withdraw";
+			// return "withdraw";
 		}
-			
-	}
-	
+		
+		return "drawCheck";
+	 }	
+	 // 회원 검색 part	
+	 @RequestMapping(value = "/search")	
+	 public String search() {
+		return "search";
+	 }
+	 @RequestMapping (value = "/searchOk")
+	 public String searchOk(HttpServletRequest request, Model model) {
+		 model.addAttribute("request", request);
+		 
+		 command = new MSearchCommand();
+		 command.execute(model);
+		 
+		 return "searchOk";		 
+	 }	
+	 
+	 @RequestMapping(value = "/list")
+	 public String list(HttpServletRequest request, Model model) {
+		 
+		 command = new MListCommand();
+		 command.execute(model);
+		 
+		 return "list";
+	 }
 	
 }
