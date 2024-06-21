@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jdy.jdbccommand.MJoinCommand;
 import com.jdy.jdbcdao.MemberDao;
 import com.jdy.jdbcdto.MemberDto;
 
@@ -57,25 +58,24 @@ public class JdbcController {
 	@RequestMapping(value = "/joinOk")
 	public String joinOk(HttpServletRequest request, Model model) {
 		
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		model.addAttribute("request", request);
 		
-		String mid = request.getParameter("mid");
-		String mpw = request.getParameter("mpw");
-		String mname = request.getParameter("mname");
-		String memail = request.getParameter("memail");
+		MJoinCommand mJoinCommand = new MJoinCommand();
+		mJoinCommand.execute(model);
+		int success = mJoinCommand.execute(model);
 		
-		MemberDao memberDao = new MemberDao();
+//		String mid = request.getParameter("mid");
+//		String mpw = request.getParameter("mpw");
+//		String mname = request.getParameter("mname");
+//		String memail = request.getParameter("memail");
 		
-		int success = memberDao.joinMember(mid, mpw, mname, memail);
+//		MemberDao memberDao = new MemberDao();
 		
+//		int success = memberDao.joinMember(mid, mpw, mname, memail);
+	
 		if(success == 1) {
-			model.addAttribute("mid", mid);
-			model.addAttribute("mname", mname);
+			model.addAttribute("mid", request.getParameter("mid"));
+			model.addAttribute("mname", request.getParameter("mname"));
 			return "joinOk";
 			
 		} else {

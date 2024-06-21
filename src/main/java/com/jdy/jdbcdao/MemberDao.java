@@ -41,7 +41,7 @@ public class MemberDao {
 			pstmt.setString(3, mname);
 			pstmt.setString(4, memail);
 			
-			success = pstmt.executeUpdate();
+			success = pstmt.executeUpdate(); // 성공하면 1 반환
 			
 		} catch (Exception e) {
 			e.printStackTrace();
