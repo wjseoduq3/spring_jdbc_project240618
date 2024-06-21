@@ -21,11 +21,11 @@
 		
 		<c:forEach items="${memberDtos}" var="memberDto">
 		<tr>
-			<td>${memberDTo.mid}</td>
-			<td>${memberDTo.mpw}</td>
-			<td>${memberDTo.mname}</td>
-			<td>${memberDTo.memail}</td>
-			<td>${memberDTo.mdate}</td>		
+			<td>${memberDto.mid}</td>
+			<td>${memberDto.mpw}</td>
+			<td>${memberDto.mname}</td>
+			<td>${memberDto.memail}</td>
+			<td>${memberDto.mdate}</td>		
 		</tr>
 		</c:forEach>
 	</table>
