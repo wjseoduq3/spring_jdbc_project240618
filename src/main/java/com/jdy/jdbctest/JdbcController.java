@@ -19,9 +19,14 @@ public class JdbcController {
 	@RequestMapping(value = "/test")
 	public void test() {
 		
-		String driverName = "com.mysql.jdbc.Driver";
+		/* String driverName = "com.mysql.jdbc.Driver";
 		String url ="jdbc:mysql://localhost:3306/jdy_spring_projectdb";
 		String username ="root";
+		String password ="12345"; */
+		
+		String driverName = "com.mysql.jdbc.Driver";
+		String url ="jdbc:mysql://192.168.0.100:3306/jdy_spring_project_db";
+		String username ="guest01";
 		String password ="12345";
 		
 		Connection conn = null;
