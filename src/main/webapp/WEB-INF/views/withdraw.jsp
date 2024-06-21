@@ -10,8 +10,7 @@
 	<h3>회원 탈퇴하기</h3>
 	<hr>
 	<form action="drawCheck">
-		탈퇴할 아이디 : <br>
-		<input type="text" name="mid"><br>
+		탈퇴할 아이디 : <input type="text" name="mid">
 		<input type="submit" value="회원 탈퇴">
 	</form>
 	<br>

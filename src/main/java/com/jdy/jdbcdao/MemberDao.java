@@ -196,5 +196,42 @@ public class MemberDao {
 			}		
 			return memberDtos;
 		}	
+		
+		public int modifyMember(String mname, String memail, String mid) {
+			
+			String sql ="UPDATE members SET mname ?, memail=? WHRE mid=?";
+			
+			Connection conn = null;
+			PreparedStatement pstmt= null;
+			
+			int success = 0;
+			
+			try {
+				Class.forName(driverName);
+				conn = DriverManager.getConnection(url, username, password);
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, mname);
+				pstmt.setString(2, memail);
+				pstmt.setString(3, mid);
+				
+				success = pstmt.executeUpdate(); // 성공하면 1 반환
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+						if(pstmt != null) {
+							pstmt.close();
+						}
+						if(conn != null) {
+							conn.close();
+						}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}				
+			}		
+			return success;
+		}	
 					
 }

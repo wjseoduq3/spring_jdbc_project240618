@@ -15,6 +15,7 @@ import com.jdy.jdbccommand.MCommand;
 import com.jdy.jdbccommand.MDeleteCommand;
 import com.jdy.jdbccommand.MJoinCommand;
 import com.jdy.jdbccommand.MListCommand;
+import com.jdy.jdbccommand.MModifyCommand;
 import com.jdy.jdbccommand.MSearchCommand;
 import com.jdy.jdbcdao.MemberDao;
 import com.jdy.jdbcdto.MemberDto;
@@ -140,5 +141,23 @@ public class JdbcController {
 		 
 		 return "list";
 	 }
-	
+	 
+	 @RequestMapping(value = "modifyOk")
+	 public String modifyOk(HttpServletRequest request, Model model) {
+		 
+		 model.addAttribute("request", request);
+		 
+		 command = new MModifyCommand();
+		 int success = command.execute(model);
+		 
+		 if(success == 1) {
+			 
+			 command = new MSearchCommand();
+			 command.execute(model);
+			 		  
+			 return "modifyOk"; 
+		 } else {
+			 return "search";
+		 }	 
+	 } 
 }

@@ -17,11 +17,9 @@ public class MDeleteCommand implements MCommand {
 			HttpServletRequest request = (HttpServletRequest)map.get("request");
 			
 			String mid = request.getParameter("mid");
-			String mpw = request.getParameter("mpw");
-			String mname = request.getParameter("mname");
-			String memail = request.getParameter("memail");
 			
 			MemberDao memberDao = new MemberDao();
+			
 			int success = memberDao.drawMember(mid);
 			
 			return success;

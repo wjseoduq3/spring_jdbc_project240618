@@ -30,8 +30,6 @@ public class MSearchCommand implements MCommand {
 			model.addAttribute("error", "회원정보가 없는 아이디입니다. 다시 확인해주세요.");
 		}
 		
-		model.addAttribute("memberDto", memberDto);
-		
 		return 0;
 	}
 
