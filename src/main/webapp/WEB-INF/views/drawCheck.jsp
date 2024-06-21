@@ -9,6 +9,6 @@
 <body>
 	<h3>회원 탈퇴 확인</h3>
 	<hr>
-	<h3>${mid}님 그동안 감사했습니다.</h3>
+	<h3>${message}</h3>
 </body>
 </html>

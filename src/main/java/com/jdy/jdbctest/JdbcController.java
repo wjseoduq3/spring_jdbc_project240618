@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jdy.jdbccommand.MDeleteCommand;
 import com.jdy.jdbccommand.MJoinCommand;
 import com.jdy.jdbcdao.MemberDao;
 import com.jdy.jdbcdto.MemberDto;
@@ -60,9 +61,8 @@ public class JdbcController {
 		
 		model.addAttribute("request", request);
 		
-		MJoinCommand mJoinCommand = new MJoinCommand();
-		mJoinCommand.execute(model);
-		int success = mJoinCommand.execute(model);
+		MJoinCommand command = new MJoinCommand();
+		int success = command.execute(model);
 		
 //		String mid = request.getParameter("mid");
 //		String mpw = request.getParameter("mpw");
@@ -94,25 +94,19 @@ public class JdbcController {
 	@RequestMapping(value = "/drawCheck")
 	public String drawCheck(HttpServletRequest request, Model model) {
 		
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		String mid = request.getParameter("mid");
-		
-		MemberDao memberDao = new MemberDao();
-		
-		int success = memberDao.drawMember(mid);
-		
+		model.addAttribute("request", request);
+				
+		MDeleteCommand command = new MDeleteCommand();
+		int success = command.execute(model);
+					
 		if(success == 1) {
-			model.addAttribute("mid", mid);
+			// model.addAttribute("mid", request.getParameter("mid"));
+			model.addAttribute("message", "회원 탈퇴 성공");
 			return "drawCheck";
 			
 		} else {
-			model.addAttribute("error", "회원탈퇴에 실패하였습니다. 아이디를 다시 확인해주세요.");
+			model.addAttribute("message", "회원 탈퇴 실패");
+			// model.addAttribute("error", "회원탈퇴에 실패하였습니다. 아이디를 다시 확인해주세요.");
 			// System.out.println("회원탈퇴실패");
 			return "withdraw";
 		}
